@@ -1,6 +1,9 @@
+import {ChangeEvent,useState} from "react";
+import {Link} from "react-router-dom";
 import './LoginPage.css'
-import {useState} from "react";
- const LoginPage = () => {
+
+
+const LoginPage = () => {
     const[email,setEmail] = useState('');
     const[password, setPassword] = useState('');
 
@@ -9,20 +12,34 @@ import {useState} from "react";
 
     }
     return (
-        <div>
-            <from onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={(e) =>setEmail(e.target.value)}/>
-                </label>
-                <br/>
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                </label>
-                <br/>
-                <button type="submit">Login</button>
-            </from>
+        <div className='box'>
+            <div className='left'>
+                <div className="image">
+                    <img src={require('./login.png')}/>
+                </div>
+            </div>
+            <div className='line'></div>
+            < div className='right'>
+                <div className="container">
+                    <h2>Sign In</h2>
+                    <form action="/home" onSubmit={handleSubmit}>
+                        <p>
+                            <label>Email</label>
+                            <input id='email-in' type="email" value={email} onChange={(e) =>setEmail(e.target.value)}/>
+                        </p>
+                        <p>
+                            <label>Password</label>
+                            <input id='pass-in' type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                        </p>
+                        <p>
+                            <button id='btn' type="submit">Login</button>
+                        </p>
+                    </form>
+                    <footer>
+                        <p>First time? <Link to="/register">Create an account</Link></p>
+                    </footer>
+                    </div>
+                </div>
         </div>
 
     )
