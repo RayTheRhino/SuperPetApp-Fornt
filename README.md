@@ -23,8 +23,9 @@ will contain:
 
 * Java Spring
 * Tomcat
-* RESTAPI
+* RestAPI
 * MongoDB
+* GoogleAPI
 * OpenAPI
 
 
