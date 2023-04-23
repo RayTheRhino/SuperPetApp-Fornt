@@ -15,7 +15,7 @@ const LoginPage = () => {
         <div className='box'>
             <div className='left'>
                 <div className="image">
-                    <img src={require('./login.png')}/>
+                    <img id='login-img' src={require('./login.png')}/>
                 </div>
             </div>
             <div className='line'></div>

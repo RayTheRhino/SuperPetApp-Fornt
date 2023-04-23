@@ -95,7 +95,7 @@ a{
     flex: 1;
     overflow: hidden;
 }
-img{
+#login-img{
     margin-left: 12%;
     margin-top: 34%;
     height: 40%;

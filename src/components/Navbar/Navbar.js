@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import Type from "../TypeWritter/typeWritter";
 import './Navbar.css'
@@ -16,9 +16,6 @@ const Navbar = () =>{
                 <Link to="/shop"> Shop </Link>
                 <Link to="/parks"> Parks </Link>
                 <Link to="/chat"> Q&A </Link>
-                <Link to="/connect-us"> Connect </Link>
-                <Link to="/login"> Login </Link>
-
             </div>
         </div>
     );
