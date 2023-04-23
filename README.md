@@ -14,7 +14,7 @@ will contain:
 
 ### Frontend Stack ###
 * JavaScript 
-* React
+* React- UseState and Hooks
 * Css
 * Scss
 
