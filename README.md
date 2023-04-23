@@ -2,7 +2,7 @@
 
 ### What is this app about? ###
 
-This repository is for the backend of this app.
+This repository is for the frontent of this app.
 The app is a social pet app for animals.
 will contain: 
 * Login & register page.
