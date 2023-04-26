@@ -16,7 +16,7 @@
 }
 
 /* Chat list styles */
-ul {
+#chat-ul {
     height: 600px;
     width: 600px;
     list-style-type: none;
@@ -38,7 +38,7 @@ ul {
     background: linear-gradient(45deg,white, #4d509e);
 }
 
-li {
+#chat-li {
     width: 350px;
     height: 80px;
     padding:20px;
