@@ -18,9 +18,9 @@ const ChatPage = () => {
     return (
         <div className='chat-container'>
             <h2 id='qa'> Ask The Vet</h2>
-            <ul className='chat-mess'>
+            <ul id='chat-ul' className='chat-mess'>
                 {messages.map((message) => (
-                    <li key={message.id}>
+                    <li id='chat-li' key={message.id}>
                         <strong>{message.timestamp}: </strong>
                         {message.text}
                     </li>

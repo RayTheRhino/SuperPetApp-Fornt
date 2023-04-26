@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+*{
+    box-sizing: border-box;
+    margin : 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: visible;
+}
+
+#parks{
+    font-family: 'Kalam', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid rgba(77, 80, 158, 0.58);
+}
+
+.comment-box{
+    display: flex;
+}
+#add-comment{
+    font-family: 'Kalam', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    margin-right: 40px;
+    margin-top: 80px;
+}
+#comment{
+    height: 100px;
+    width: 300px;
+}
+#comment-btn{
+    padding: .6rem;
+    width: 300px;
+    background-color: rgba(77, 80, 158, 0.89);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all .5s;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+#comment-btn:hover{
+    font-size: 23px;
+    transition: all 0.5s;
+    background-color: rgba(77, 80, 158, 0.66);
+}

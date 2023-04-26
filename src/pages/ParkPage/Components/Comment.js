@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import "./Star.css";
+import './Comment.css'
 
 const RateUs = ({ onRatingChange }) => {
     const [rating, setRating] = useState(null);
@@ -56,19 +57,21 @@ const CommentSection = () => {
 
     return (
         <div>
-            <h1>Comments</h1>
-            <RateUs onRatingChange={handleRatingChange} />
-            <div>
-                <label htmlFor="comment">Comment: </label>
-                <textarea
-                    id="comment"
-                    value={newComment}
-                    onChange={(e) => setNewComment(e.target.value)}
-                />
+            <h1 id='parks'> Parks Review </h1>
+            <div className='comment-box'>
+                <h3 id='add-comment'>Add a comment: </h3>
+                <div>
+                    <RateUs onRatingChange={handleRatingChange} />
+                    <textarea
+                        id="comment"
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                    />
+                </div>
             </div>
-            <button onClick={handleAddComment}>Add Comment</button>
+            <button id='comment-btn' onClick={handleAddComment}>Add Comment</button>
             <div>
-                <h2>Comments:</h2>
+                <h2 id='comment'> Your Comments: </h2>
                 {comments.length > 0 ? (
                     <ul>
                         {comments.map((comment, index) => (
@@ -76,6 +79,7 @@ const CommentSection = () => {
                                 <div>Rating: {comment.rating}</div>
                                 <div>Comment: {comment.comment}</div>
                                 <RateUs onRatingChange={() => {}} rating={comment.rating} />
+                                figur how to show the star number with stars
                             </li>
                         ))}
                     </ul>
