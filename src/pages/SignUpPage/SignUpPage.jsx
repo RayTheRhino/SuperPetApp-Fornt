@@ -12,6 +12,23 @@ const SignUpPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        fetch('http://localhost:3306/superapp/users',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                role: "ADMIN",
+                avatar: "J"
+            })
+        }).then(response =>{
+        //     check if brough something else this is not woek
+
+        }).catch(error =>{
+            console.log(error);
+        });
 
     }
     return (
@@ -29,7 +46,7 @@ const SignUpPage = () => {
                     <form action="/" onSubmit={handleSubmit}>
                         <p>
                             <label>Username </label>
-                            <input id="user-in" type="text" value={username} onChange={(e) =>setUsername(e.target.value)}/>
+                            <input id="user-in" type="text" varlue={username} onChange={(e) =>setUsername(e.target.value)}/>
                         </p>
                         <p>
                             <label>Email </label>

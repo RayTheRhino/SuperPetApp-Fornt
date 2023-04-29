@@ -95,10 +95,10 @@ a{
     flex: 1;
     overflow: hidden;
 }
-#login-img{
+.login-img{
     margin-left: 12%;
-    margin-top: 34%;
-    height: 40%;
+    margin-top: 10%;
+    height: 43%;
 }
 .line{
     border-right: 6px solid #4D509EE2;
