@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import Navbar from "./components/Navbar/Navbar";
 import ChatPage from "./pages/ChatPage/ChatPage";
 import ParkPage from "./pages/ParkPage/ParkPage";
+import ShopPage from "./pages/ShopPage/ShopPage";
 
 const typeWritter = ["apple, pears, bananas"];
 function App() {
@@ -19,7 +20,7 @@ function App() {
                     <Route path="/" element={<LoginPage/>} />
                     <Route path="/register" element={<SignUpPage/>} />
                     {/*<Route path='/adopt' element={<AdoptPage/>} />*/}
-                    {/*<Route path='/shop' element={<ShopPage/>} />*/}
+                    <Route path='/shop' element={<ShopPage/>} />
                     <Route path='/parks' element={<ParkPage/>} />
                     <Route path='/chat' element={<ChatPage/>} />
                 </Routes>

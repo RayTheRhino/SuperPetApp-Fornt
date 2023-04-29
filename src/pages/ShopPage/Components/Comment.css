@@ -8,7 +8,7 @@
     overflow: visible;
 }
 
-#parks{
+#shops{
     font-family: 'Kalam', sans-serif;
     font-weight: 300;
     font-size: 60px;
@@ -48,4 +48,14 @@
     font-size: 23px;
     transition: all 0.5s;
     background-color: rgba(77, 80, 158, 0.66);
+}
+.comment-section{
+    margin-top: 90px;
+    margin-left: 100px;
+}
+#review-ul{
+    list-style-type: none;
+}
+#review-li{
+    margin-top: 20px;
 }
