@@ -6,16 +6,31 @@ import './LoginPage.css'
 const LoginPage = () => {
     const[email,setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const superapp = '2023b.tal.benita'
+
+    const sendLoginRequest = async (email, password) =>{
+        try{
+            console.log(email);
+            console.log(password);
+
+            const response = await fetch(`http://localhost:3306/superapp/users/login/${superapp}/${email}`);
+            const data = await  response.json();
+            console.log(data);
+        }catch (error){
+            console.log(error);
+        }
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        sendLoginRequest(email,password)
 
     }
     return (
         <div className='box'>
             <div className='left'>
                 <div className="image">
-                    <img id='login-img' src={require('./login.png')}/>
+                    <img className='login-img' src={require('./login.png')}/>
                 </div>
             </div>
             <div className='line'></div>
@@ -36,7 +51,7 @@ const LoginPage = () => {
                         </p>
                     </form>
                     <footer>
-                        <p>First time? <Link to="/register">Create an account</Link></p>
+                        <p>First time? <Link to="/register" >Create an account</Link></p>
                     </footer>
                     </div>
                 </div>
