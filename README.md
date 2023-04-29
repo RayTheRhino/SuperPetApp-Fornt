@@ -25,7 +25,7 @@ will contain:
 * Tomcat
 * RestAPI
 * MongoDB
-* GoogleAPI
+* OpenStreetMapAPI
 * OpenAPI
 
 
