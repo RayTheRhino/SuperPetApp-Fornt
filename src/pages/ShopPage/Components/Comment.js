@@ -62,7 +62,7 @@ const CommentSection = () => {
 
     return (
         <div>
-            <h1 id='parks'> Parks Review </h1>
+            <h1 id='shops'> Shops Review </h1>
             <div className='comment-box'>
                 <h3 id='add-comment'>Add a comment: </h3>
                 <div>
@@ -75,12 +75,11 @@ const CommentSection = () => {
                 </div>
             </div>
             <button id='comment-btn' onClick={handleAddComment}>Add Comment</button>
-            <div>
-                <h2 id='comment'> Your Comments: </h2>
+            <div className='comment-section'>
                 {comments.length > 0 ? (
-                    <ul>
+                    <ul id='review-ul'>
                         {comments.map((comment, index) => (
-                            <li key={index}>
+                            <li id='review-li' key={index}>
                                 <div>Rating: {renderStars(comment.rating)}</div>
                                 <div>Comment: {comment.comment}</div>
                             </li>
