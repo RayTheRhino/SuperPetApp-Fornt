@@ -99,14 +99,24 @@ a{
 }
 #sign-page{
     margin-left: 30%;
-    margin-top: 40%;
+    margin-top: 90px;
     height: 40%;
 }
-.line{
+.line-sign{
     border-right: 6px solid #4D509EE2;
     border-radius: 40px;
-    margin-top: 12%;
+    margin-top: 150px;
     margin-left: 7%;
     height: 350px;
 
+}
+#role-p{
+    margin-top: 20px;
+}
+#avatar-in{
+    margin-left: 4rem;
+}
+#select-in{
+    width: 240px;
+    margin-left: 5rem;
 }

@@ -6,8 +6,9 @@ import './SignUpPage.css'
 
 const SignUpPage = () => {
     const[email,setEmail] = useState('');
-    const[password, setPassword] = useState('');
+    const[avatar, setAvatar] = useState('');
     const [username, setUsername] = useState('');
+    const [role, setRole] = useState('');
 
 
     const handleSubmit = (event) => {
@@ -20,8 +21,8 @@ const SignUpPage = () => {
             body: JSON.stringify({
                 email: email,
                 username: username,
-                role: "ADMIN",
-                avatar: "J"
+                role: role,
+                avatar: avatar
             })
         }).then(response =>{
         //     check if brough something else this is not woek
@@ -38,7 +39,7 @@ const SignUpPage = () => {
                     <img id='sign-page' src={require('./undraw_Group_selfie_re_h8gb.png')}/>
                 </div>
             </div>
-            <div className='line'></div>
+            <div className='line-sign'></div>
             <div className='right'>
                 <div className="container">
                     <h2>Join Us</h2>
@@ -53,8 +54,16 @@ const SignUpPage = () => {
                             <input id="email-in" type="email" value={email} onChange={(e) =>setEmail(e.target.value)}/>
                         </p>
                         <p>
-                            <label>Password </label>
-                            <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                            <label>Avatar </label>
+                            <input id='avatar-in' type="text" value={avatar} onChange={(e)=>setAvatar(e.target.value)}/>
+                        </p>
+                        <p id='role-p'>
+                            <label>Role</label>
+                            <select id='select-in' value={role} onChange={(e) =>setRole(e.target.value)}>
+                                <option value='ADMIN'>Admin</option>
+                                <option value='MINIAPP_USER'>Miniapp User</option>
+                                <option value='SUPER_USER'>Super User</option>
+                            </select>
                         </p>
                         <p>
                         <button  id="btn" type="submit">Register</button>

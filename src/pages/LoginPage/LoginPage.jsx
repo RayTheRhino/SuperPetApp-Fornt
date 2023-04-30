@@ -33,11 +33,11 @@ const LoginPage = () => {
                     <img className='login-img' src={require('./login.png')}/>
                 </div>
             </div>
-            <div className='line'></div>
+            <div className='line-login'></div>
             < div className='right'>
                 <div className="container">
                     <h2>Sign In</h2>
-                    <form action="/home" onSubmit={handleSubmit}>
+                    <form id='login-form' action="/home" onSubmit={handleSubmit}>
                         <p>
                             <label>Email</label>
                             <input id='email-in' type="email" value={email} onChange={(e) =>setEmail(e.target.value)}/>
