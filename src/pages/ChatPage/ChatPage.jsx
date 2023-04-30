@@ -26,9 +26,9 @@ const ChatPage = () => {
                     </li>
                 ))}
             </ul>
-            <form onSubmit={handleNewMessage}>
-                <input type="text" name="message" placeholder="Type your message here" />
-                <button type="submit">Send</button>
+            <form id='chat-form' onSubmit={handleNewMessage}>
+                <input id='text-area' type="text" name="message" placeholder="Type your message here" />
+                <button id='send-btn' type="submit">Send</button>
             </form>
         </div>
     );
