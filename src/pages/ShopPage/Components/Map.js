@@ -30,6 +30,17 @@ const MyMap = () => {
             }));
             console.log(shops);
             setShops(shops);
+
+            const requestBody = { latitude, longitude };
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody)
+            };
+            fetch('http://localhost:3306/superapp/objects', requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
         });
     }, [])
 

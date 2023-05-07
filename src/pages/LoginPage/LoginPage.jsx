@@ -5,13 +5,13 @@ import './LoginPage.css'
 
 const LoginPage = () => {
     const[email,setEmail] = useState('');
-    const[password, setPassword] = useState('');
+    const[username, setUsername] = useState('');
     const superapp = '2023b.tal.benita'
 
-    const sendLoginRequest = async (email, password) =>{
+    const sendLoginRequest = async (email, username) =>{
         try{
             console.log(email);
-            console.log(password);
+            console.log(username);
 
             const response = await fetch(`http://localhost:3306/superapp/users/login/${superapp}/${email}`);
             const data = await  response.json();
@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        sendLoginRequest(email,password)
+        sendLoginRequest(email,username)
 
     }
     return (
@@ -43,8 +43,8 @@ const LoginPage = () => {
                             <input id='email-in' type="email" value={email} onChange={(e) =>setEmail(e.target.value)}/>
                         </p>
                         <p>
-                            <label>Password</label>
-                            <input id='pass-in' type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                            <label>Username</label>
+                            <input id='pass-in' type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
                         </p>
                         <p>
                             <button id='btn' type="submit">Login</button>
