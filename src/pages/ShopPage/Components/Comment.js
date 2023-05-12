@@ -6,9 +6,10 @@ import './Comment.css'
 const RateUs = ({ onRatingChange, selectedRating }) => {
     const [hover, setHover] = useState(null);
 
-    const handleRatingChange = (ratingValue) => {
+        const handleRatingChange = (ratingValue) => {
         onRatingChange(ratingValue);
     };
+
 
     return (
         <div>
@@ -38,17 +39,60 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
     );
 };
 
+
+
+
+
 const CommentSection = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
+    const type = 'review';
 
-    const handleAddComment = () => {
+    console.log("before");
+    const handleAddComment = (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
+
+        console.log("in");
+
+        e.preventDefault();
+        fetch('http://localhost:3306/superapp/objects', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                type: type,
+                alias: " ",
+                active: true,
+                location: {
+                    "lat": 0.0,
+                    "lng": 0.0
+                },
+                createdBy: {
+                    "userId": {
+                        "superapp": "asdfg",
+                        "email": "sdggwgfd"
+                    }
+                },
+                objectDetails: {
+                    stars: selectedRating,
+                    comment: newComment
+                }
+            })
+        }).then(response => {
+            //     check if brough something else this is not woek
+
+        }).catch(error => {
+            console.log(error);
+        });
+        console.log("after");
+
     };
+
 
     const handleRatingChange = (ratingValue) => {
         setSelectedRating(ratingValue);
@@ -60,7 +104,7 @@ const CommentSection = () => {
         });
     };
 
-    return (
+        return (
         <div>
             <h1 id='shops'> Shops Review </h1>
             <div className='comment-box'>
