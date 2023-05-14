@@ -38,17 +38,53 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
     );
 };
 
-const CommentSection = () => {
+const CommentSection = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
+    const type = 'park-review';
 
-    const handleAddComment = () => {
+    const handleAddComment = (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
+
+        e.preventDefault();
+        fetch('http://localhost:3306/superapp/objects', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                type: type,
+                alias: " ",
+                active: true,
+                location: {
+                    "lat": center[0],
+                    "lng": center[1]
+                },
+                createdBy: {
+                    "userId": {
+                        "superapp": "asdfg",
+                        "email": "sdggwgfd"
+                    }
+                },
+                objectDetails: {
+                    stars: selectedRating,
+                    comment: newComment
+                }
+            })
+        }).then(response => {
+            //     check if brough something else this is not woek
+
+        }).catch(error => {
+            console.log(error);
+        });
+        console.log("after");
+        console.log(center);
     };
+    const isComment = comments.length > 0;
 
     const handleRatingChange = (ratingValue) => {
         setSelectedRating(ratingValue);
@@ -76,7 +112,7 @@ const CommentSection = () => {
             </div>
             <button id='comment-btn' onClick={handleAddComment}>Add Comment</button>
             <div className='comment-section'>
-                {comments.length > 0 ? (
+                {isComment ? (
                     <ul id='review-ul'>
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>

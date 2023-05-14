@@ -6,7 +6,7 @@ import './Comment.css'
 const RateUs = ({ onRatingChange, selectedRating }) => {
     const [hover, setHover] = useState(null);
 
-        const handleRatingChange = (ratingValue) => {
+    const handleRatingChange = (ratingValue) => {
         onRatingChange(ratingValue);
     };
 
@@ -43,20 +43,17 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
 
 
 
-const CommentSection = () => {
+const CommentSection = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
-    const type = 'review';
+    const type = 'shop-review';
 
-    console.log("before");
     const handleAddComment = (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
-
-        console.log("in");
 
         e.preventDefault();
         fetch('http://localhost:3306/superapp/objects', {
@@ -69,8 +66,8 @@ const CommentSection = () => {
                 alias: " ",
                 active: true,
                 location: {
-                    "lat": 0.0,
-                    "lng": 0.0
+                    "lat": center[0],
+                    "lng": center[1]
                 },
                 createdBy: {
                     "userId": {
@@ -90,9 +87,10 @@ const CommentSection = () => {
             console.log(error);
         });
         console.log("after");
+        console.log(center);
 
     };
-
+    const isComment = comments.length > 0;
 
     const handleRatingChange = (ratingValue) => {
         setSelectedRating(ratingValue);
@@ -104,7 +102,7 @@ const CommentSection = () => {
         });
     };
 
-        return (
+    return (
         <div>
             <h1 id='shops'> Shops Review </h1>
             <div className='comment-box'>
@@ -120,7 +118,7 @@ const CommentSection = () => {
             </div>
             <button id='comment-btn' onClick={handleAddComment}>Add Comment</button>
             <div className='comment-section'>
-                {comments.length > 0 ? (
+                {isComment ? (
                     <ul id='review-ul'>
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>
