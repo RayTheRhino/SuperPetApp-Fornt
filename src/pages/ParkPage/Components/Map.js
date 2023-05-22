@@ -28,7 +28,6 @@ const MyMap = ({center, onCenterChange}) =>{
                 lat: element.lat,
                 lon: element.lon,
             }));
-            console.log(parks);
             setParks(parks);
 
         } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { FaStar } from "react-icons/fa";
 import "./Star.css";
 import './Comment.css'
@@ -38,10 +38,11 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
     );
 };
 
-const CommentSection = ({center}) => {
+const Comment = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
+    // const [parkName,setParkName] = useState("");
     const type = 'park-review';
 
     const handleAddComment = (e) => {
@@ -81,9 +82,57 @@ const CommentSection = ({center}) => {
         }).catch(error => {
             console.log(error);
         });
-        console.log("after");
-        console.log(center);
     };
+
+    const getParkReviews = () => {
+        const request = {
+            command: "GetAllParkReviews",
+            targetObject: {
+                objectId: {
+                    superapp: "2023b.demo",
+                    internalObjectId: "1",
+                },
+            },
+            invocationTimestamp: "2023-05-05T16:10:04.018+00:00",
+            invokedBy: {
+                userId: {
+                    superapp: "2023b.demo",
+                    email: "jane@demo.org",
+                },
+            },
+            commandAttributes: {
+                key1: {
+                    key1Subkey: "once a wish upon a star",
+                },
+            },
+        };
+
+        fetch("http://localhost:3306/superapp/miniapp/name", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(request),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const commentsArray = data.map((item) => {
+                    return {
+                        rating: item.objectDetails.stars,
+                        comment: item.objectDetails.comment,
+                    };
+                });
+                setComments(commentsArray);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        getParkReviews();
+    }, []);
+
     const isComment = comments.length > 0;
 
     const handleRatingChange = (ratingValue) => {
@@ -100,8 +149,12 @@ const CommentSection = ({center}) => {
         <div>
             <h1 id='shops'> Parks Review </h1>
             <div className='comment-box'>
-                <h3 id='add-comment'>Add a comment: </h3>
+                <h3 id='add-comment'>Add A Review: </h3>
                 <div>
+                    {/*<div className='park-name'>*/}
+                    {/*    <h3 className='park-name-title'>Park Name:</h3>*/}
+                    {/*    <input className='name-input'/>*/}
+                    {/*</div>*/}
                     <RateUs onRatingChange={handleRatingChange} selectedRating={selectedRating} />
                     <textarea
                         id="comment"
@@ -110,7 +163,7 @@ const CommentSection = ({center}) => {
                     />
                 </div>
             </div>
-            <button id='comment-btn' onClick={handleAddComment}>Add Comment</button>
+            <button id='comment-btn' onClick={handleAddComment}> Comment </button>
             <div className='comment-section'>
                 {isComment ? (
                     <ul id='review-ul'>
@@ -129,4 +182,4 @@ const CommentSection = ({center}) => {
     );
 };
 
-export default CommentSection;
+export default Comment;

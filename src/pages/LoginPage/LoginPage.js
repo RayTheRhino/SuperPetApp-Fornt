@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        sendLoginRequest(email,username)
+        sendLoginRequest(email, username)
 
     }
     return (
