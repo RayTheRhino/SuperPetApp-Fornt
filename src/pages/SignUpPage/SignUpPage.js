@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import './UpdatePage.css'
+import './SignUpPage.css'
 
 
-
-const UpdatePage = () => {
+const SignUpPage = () => {
     const[email,setEmail] = useState('');
     const[avatar, setAvatar] = useState('');
     const [username, setUsername] = useState('');
@@ -78,4 +77,4 @@ const UpdatePage = () => {
 
     )
 }
-export default UpdatePage;
+export default SignUpPage;

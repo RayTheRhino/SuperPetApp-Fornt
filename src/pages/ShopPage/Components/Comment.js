@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { FaStar } from "react-icons/fa";
 import "./Star.css";
 import './Comment.css'
@@ -86,10 +86,59 @@ const CommentSection = ({center}) => {
         }).catch(error => {
             console.log(error);
         });
-        console.log("after");
-        console.log(center);
 
     };
+
+    const getShopReviews = () => {
+        const request = {
+            command: "GetAllShopReviews",
+            targetObject: {
+                objectId: {
+                    superapp: "2023b.demo",
+                    internalObjectId: "1",
+                },
+            },
+            invocationTimestamp: "2023-05-05T16:10:04.018+00:00",
+            invokedBy: {
+                userId: {
+                    superapp: "2023b.demo",
+                    email: "jane@demo.org",
+                },
+            },
+            commandAttributes: {
+                key1: {
+                    key1Subkey: "once a wish upon a star",
+                },
+            },
+        };
+
+        fetch("http://localhost:3306/superapp/miniapp/name", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(request),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const commentsArray = data.map((item) => {
+                    return {
+                        rating: item.objectDetails.stars,
+                        comment: item.objectDetails.comment,
+                    };
+                });
+                setComments(commentsArray);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        getShopReviews();
+    }, []);
+
+
     const isComment = comments.length > 0;
 
     const handleRatingChange = (ratingValue) => {
