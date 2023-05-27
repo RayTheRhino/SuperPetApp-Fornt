@@ -8,22 +8,35 @@ const LoginPage = () => {
     const[username, setUsername] = useState('');
     const superapp = '2023b.tal.benita'
 
-    const sendLoginRequest = async (email, username) =>{
-        try{
-            console.log(email);
-            console.log(username);
+    // const sendLoginRequest = async (email, username) =>{
+    //     try{
+    //         console.log(email);
+    //         console.log(username);
+    //
+    //         const response = await fetch(`http://localhost:3306/superapp/users/login/${superapp}/${email}`);
+    //         const data = await  response.json();
+    //         console.log(data);
+    //     }catch (error){
+    //         console.log(error);
+    //     }
+    // }
 
-            const response = await fetch(`http://localhost:3306/superapp/users/login/${superapp}/${email}`);
-            const data = await  response.json();
-            console.log(data);
-        }catch (error){
-            console.log(error);
-        }
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        sendLoginRequest(email, username)
+        const response=fetch('http://localhost:3306/superapp/users/login/${superapp}/${email}',{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username
+            })
+        });
+        if(!response.ok){
+
+        }
 
     }
     return (

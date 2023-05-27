@@ -46,7 +46,7 @@ const SignUpPage = () => {
                     <form action="/" onSubmit={handleSubmit}>
                         <p>
                             <label>Username </label>
-                            <input id="user-in" type="text" varlue={username} onChange={(e) =>setUsername(e.target.value)}/>
+                            <input id="user-in" type="text" value={username} onChange={(e) =>setUsername(e.target.value)}/>
                         </p>
                         <p>
                             <label>Email </label>
@@ -61,7 +61,7 @@ const SignUpPage = () => {
                             <select id='select-in' value={role} onChange={(e) =>setRole(e.target.value)}>
                                 <option value='ADMIN'>Admin</option>
                                 <option value='MINIAPP_USER'>Miniapp User</option>
-                                <option value='SUPER_USER'>Super User</option>
+                                <option value='SUPERAPP_USER'>Superapp User</option>
                             </select>
                         </p>
                         <p>

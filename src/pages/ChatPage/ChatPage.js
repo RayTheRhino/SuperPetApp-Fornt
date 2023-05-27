@@ -3,6 +3,7 @@ import './ChatPage.css'
 const ChatPage = () => {
     const [messages, setMessages] = useState([]);
     const [latestMessage,setLatestMessage] = useState({});
+    const alias="baba";
     const handleNewMessage = (event) => {
         event.preventDefault();
         const input = event.target.elements.message;
@@ -27,7 +28,7 @@ const ChatPage = () => {
             },
             body: JSON.stringify({
                 type: type,
-                alias: " ",
+                alias: alias,
                 active: true,
                 location: {
                     "lat" : 0.0,
@@ -35,8 +36,8 @@ const ChatPage = () => {
                 },
                 createdBy:{
                     "userId": {
-                        "superapp": "asdfg",
-                        "email": "sdggwgfd"
+                        "superapp": "SuperPetApp",
+                        "email": "danielle@gmail.com"
                     }
                 },
                 objectDetails: {
@@ -126,7 +127,7 @@ const ChatPage = () => {
                 <input id='text-area' type="text" name="message" placeholder="Type your message here" />
                 <button id='send-btn' type="submit">Send</button>
             </form>
-        </div>git
+        </div>
     );
 };
 
