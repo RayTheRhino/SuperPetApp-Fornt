@@ -47,6 +47,7 @@ const CommentSection = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
+    const alias = "bla";
     const type = 'shop-review';
 
     const handleAddComment = (e) => {
@@ -63,7 +64,7 @@ const CommentSection = ({center}) => {
             },
             body: JSON.stringify({
                 type: type,
-                alias: " ",
+                alias: alias,
                 active: true,
                 location: {
                     "lat": center[0],
@@ -71,8 +72,8 @@ const CommentSection = ({center}) => {
                 },
                 createdBy: {
                     "userId": {
-                        "superapp": "asdfg",
-                        "email": "sdggwgfd"
+                        "superapp": "SuperPetApp",
+                        "email": "danielle@gmail.com"
                     }
                 },
                 objectDetails: {

@@ -43,6 +43,7 @@ const Comment = ({center}) => {
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
     // const [parkName,setParkName] = useState("");
+    const alias ="asa"
     const type = 'park-review';
 
     const handleAddComment = (e) => {
@@ -59,7 +60,7 @@ const Comment = ({center}) => {
             },
             body: JSON.stringify({
                 type: type,
-                alias: " ",
+                alias: alias,
                 active: true,
                 location: {
                     "lat": center[0],
@@ -67,8 +68,8 @@ const Comment = ({center}) => {
                 },
                 createdBy: {
                     "userId": {
-                        "superapp": "asdfg",
-                        "email": "sdggwgfd"
+                        "superapp": "SuperPetApp",
+                        "email": "danielle@gmail.com"
                     }
                 },
                 objectDetails: {
