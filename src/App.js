@@ -8,6 +8,7 @@ import ChatPage from "./pages/ChatPage/ChatPage";
 import ParkPage from "./pages/ParkPage/ParkPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import OnlineStorePage from "./pages/OnlineStorePage/OnlineStorePage";
+import CartPage from "./pages/OnlineStorePage/onlineShopPages/CartPage";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
                     <Route path='/onlineShop' element={<OnlineStorePage/>} />
                     <Route path='/parks' element={<ParkPage/>} />
                     <Route path='/chat' element={<ChatPage/>} />
+                    {/* outter route */}
+                    <Route path='/onlineShop/cart' element={<CartPage/>}/>
                 </Routes>
 
             </div>
