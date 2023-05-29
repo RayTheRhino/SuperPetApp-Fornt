@@ -6,7 +6,7 @@ import {Product} from './onlineShopPages/Product'
 import './onlineShopPage.css'
 import { ShopContext } from './onlineShopPages/Context/ShopContext';
 
-const OnlineStorePage = () => {
+
 const OnlineStorePage = () => {
     return (
         <div>
