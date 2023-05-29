@@ -1,43 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
+
 .cart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cartItem {
-    width: 700px;
-    height: 250px;
-    display: flex;
-  
-    align-items: center;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-    margin: 30px;
-  }
-  
-  .cartItem img {
-    width: 200px;
-  }
-  
-  .cartItem .description {
-    width: 100%;
-    font-size: 30px;
-  }
-  
-  .countHandler input {
-    width: 40px;
-    text-align: center;
-    font-weight: bolder;
-  }
-  
-  .checkout button {
-    width: 150px;
-    height: 50px;
-    background-color: rgb(19, 19, 19);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    margin: 10px;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartItem {
+  width: 700px;
+  height: 250px;
+  display: flex;
+
+  align-items: center;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  margin: 30px;
+}
+
+.cartItem img {
+  width: 200px;
+}
+
+.cartItem .description {
+  width: 100%;
+  font-size: 30px;
+}
+
+.countHandler input {
+  width: 40px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.checkout button {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(152, 155, 229);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.checkout button:hover {
+  font-size: 12px;
+  transition: all 0.5s;
+  background-color: rgba(152, 155, 229, 0.824);
+}
+
+#cartTitle {
+  font-family: "Fuzzy bubbles", sans-serif;
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+#minus, #plus{
+  background-color: #ffff;
+  padding: 7px;
+  color:rgb(100, 103, 205);
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+}
+#plus:hover{
+  font-size: 25px;
+}
+#minus:hover{
+  font-size: 25px;
+}
