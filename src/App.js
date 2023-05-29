@@ -9,11 +9,12 @@ import ParkPage from "./pages/ParkPage/ParkPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import OnlineStorePage from "./pages/OnlineStorePage/OnlineStorePage";
 import CartPage from "./pages/OnlineStorePage/onlineShopPages/CartPage";
+import { ShopContextProvider } from './pages/OnlineStorePage/onlineShopPages/Context/ShopContext';
 
 function App() {
   return (
     <div className="App">
-
+        <ShopContextProvider>
         <BrowserRouter>
             <Navbar/>
             <div>
@@ -27,10 +28,13 @@ function App() {
                     <Route path='/chat' element={<ChatPage/>} />
                     {/* outter route */}
                     <Route path='/onlineShop/cart' element={<CartPage/>}/>
+                    {/* outter route */}
+                    <Route path='/onlineShop/cart' element={<CartPage/>}/>
                 </Routes>
 
             </div>
         </BrowserRouter>
+        </ShopContextProvider>
     </div>
   );
 }
