@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App">
         <ShopContextProvider>
+        <ShopContextProvider>
         <BrowserRouter>
             <Navbar/>
             <div>
@@ -37,6 +38,7 @@ function App() {
 
             </div>
         </BrowserRouter>
+        </ShopContextProvider>
         </ShopContextProvider>
     </div>
   );
