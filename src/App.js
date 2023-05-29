@@ -28,6 +28,8 @@ function App() {
                     <Route path='/chat' element={<ChatPage/>} />
                     {/* outter route */}
                     <Route path='/onlineShop/cart' element={<CartPage/>}/>
+                    {/* outter route */}
+                    <Route path='/onlineShop/cart' element={<CartPage/>}/>
                 </Routes>
 
             </div>
