@@ -13,7 +13,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.4.0",
     "css": "^3.0.0",
-    "leaflet": "^1.9.3",
+    "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geosearch": "^3.8.0",
     "phosphor-react": "^1.4.1",
