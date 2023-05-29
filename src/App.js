@@ -10,6 +10,8 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import OnlineStorePage from "./pages/OnlineStorePage/OnlineStorePage";
 import CartPage from "./pages/OnlineStorePage/onlineShopPages/CartPage";
 import { ShopContextProvider } from './pages/OnlineStorePage/onlineShopPages/Context/ShopContext';
+// import ManagerPage from './pages/ManagerPage/ManagerPage';
+import PaymentPage from './pages/OnlineStorePage/onlineShopPages/Componenets/PaymentPage';
 
 function App() {
   return (
@@ -28,8 +30,9 @@ function App() {
                     <Route path='/chat' element={<ChatPage/>} />
                     {/* outter route */}
                     <Route path='/onlineShop/cart' element={<CartPage/>}/>
-                    {/* outter route */}
-                    <Route path='/onlineShop/cart' element={<CartPage/>}/>
+                    {/* ManagerPage for putting products in website */}
+                    {/* <Route path='/managerPage' element={<ManagerPage/>}/> */}
+                    <Route path='/onlineShop/cart/paymentPage' element={<PaymentPage/>}/>
                 </Routes>
 
             </div>
