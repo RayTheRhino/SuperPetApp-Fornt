@@ -13,6 +13,11 @@ export const CartItem = (props) => {
             <p>
                 ₪{price}
             </p>
+            <div className='countHandler'>
+                <button> - </button>
+                
+                <button> + </button>
+            </div>
         </div>
     </div>
   )
