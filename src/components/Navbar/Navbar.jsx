@@ -12,8 +12,8 @@ const Navbar = () =>{
             </div>
             <div className="rightSide">
                 <Link to="/"> Home </Link>
-                <Link to="/adopt"> Adopt </Link>
                 <Link to="/shop"> Shop </Link>
+                <Link to="/managerPage">Manager Page</Link>
                 <Link to="/onlineShop">Online Store</Link>
                 <Link to="/managerPage">Manager Page</Link>
                 <Link to="/parks"> Parks </Link>
