@@ -5,6 +5,13 @@ import { PRODUCTS } from "./products";
 import { Product } from "./onlineShopPages/Product";
 import "./onlineShopPage.css";
 import { ShopContext } from "./onlineShopPages/Context/ShopContext";
+import React from "react";
+import { Link } from "react-router-dom";
+import { ShoppingCart } from "phosphor-react";
+import { PRODUCTS } from "./products";
+import { Product } from "./onlineShopPages/Product";
+import "./onlineShopPage.css";
+import { ShopContext } from "./onlineShopPages/Context/ShopContext";
 
 const OnlineStorePage = () => {
   return (
