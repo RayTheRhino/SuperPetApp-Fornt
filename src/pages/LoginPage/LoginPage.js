@@ -1,13 +1,16 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useContext } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import UserContext from "../../context/UserContext";
 import "./LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const superapp = "SuperPetApp";
-  // const [isLoggedIn, setLoggedIn] = useState(false);
-  // const [userType, setUserType] = useState(null);
+  const navigate = useNavigate();
+  const { handleLogin } = useContext(UserContext);
+
 
   const sendLoginRequest = async () => {
     try {
@@ -27,9 +30,10 @@ const LoginPage = () => {
           if (response.status !== 200) {
             console.log("problem login"); //show response on user
           } else {
+            handleLogin({username, email});
             setEmail(email);
             setUsername(username);
-            console.log("succes!");
+            navigate("/onlineShop");
           }
         })
         .catch((error) => {

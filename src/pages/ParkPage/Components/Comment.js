@@ -46,14 +46,14 @@ const Comment = ({center}) => {
     const alias ="asa"
     const type = 'park-review';
 
-    const handleAddComment = (e) => {
+    const handleAddComment =  async (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
 
         e.preventDefault();
-        fetch('http://localhost:3306/superapp/objects', {
+        await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const Comment = ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": "danielle@gmail.com"
+                        "email": "test_super@email.com"
                     }
                 },
                 objectDetails: {
@@ -85,7 +85,7 @@ const Comment = ({center}) => {
         });
     };
 
-    const getParkReviews = () => {
+    const getParkReviews =  async () => {
         const request = {
             command: "GetAllParkReviews",
             targetObject: {
@@ -98,17 +98,16 @@ const Comment = ({center}) => {
             invokedBy: {
                 userId: {
                     superapp: "SuperPetApp",
-                    email: "jane@demo.org",
+                    email: "hdudtototo@gmail.com",
                 },
             },
             commandAttributes: {
-                key1: {
-                    key1Subkey: "once a wish upon a star",
-                },
+                size:10,
+                page:0,
             },
         };
 
-        fetch("http://localhost:3306/superapp/miniapp/name", {
+        await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
