@@ -13,7 +13,7 @@ const CartPage = () => {
   return (
     <div className='cart'>
       <div>
-        <h3 id='cartTitle'> Cart : </h3>
+        <h3 id='cartTitle'> Cart </h3>
       </div>
       <div className='cartItems'>
         {PRODUCTS.map((product)=>{
@@ -28,7 +28,7 @@ const CartPage = () => {
           <button onClick={() => navigate('/onlineShop')}>Continue Shopping</button>
           <button onClick={() => navigate('/onlineShop/cart/paymentPage')}>Checkout </button>
         </div>
-        : <h1> Your Cart is Empty</h1>}
+        : <h3 className='noCart'> Your Cart is Empty</h3>}
 
     </div>
   )

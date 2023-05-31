@@ -90,14 +90,14 @@ const Comment = ({center}) => {
             command: "GetAllParkReviews",
             targetObject: {
                 objectId: {
-                    superapp: "2023b.demo",
+                    superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
             },
             invocationTimestamp: "2023-05-05T16:10:04.018+00:00",
             invokedBy: {
                 userId: {
-                    superapp: "2023b.demo",
+                    superapp: "SuperPetApp",
                     email: "jane@demo.org",
                 },
             },

@@ -12,8 +12,12 @@ import CartPage from "./pages/OnlineStorePage/onlineShopPages/CartPage";
 import { ShopContextProvider } from './pages/OnlineStorePage/onlineShopPages/Context/ShopContext';
 // import ManagerPage from './pages/ManagerPage/ManagerPage';
 import PaymentPage from './pages/OnlineStorePage/onlineShopPages/Componenets/PaymentPage';
+// import ProtectedRoute from './components/ProtectedRoute/ProtectedRout';
 
 function App() {
+  const isLoggedIn = true; 
+  // const currentUserType = 'ADMIN;'
+
   return (
     <div className="App">
         <ShopContextProvider>
@@ -24,14 +28,14 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LoginPage/>} />
                     <Route path="/register" element={<SignUpPage/>} />
+                    {/* <ProtectedRoute path ='/dashboard' component={} isLoggedIn={isLoggedIn} userTypes={[]}/> */}
+                    {/* <ProtectedRoute path ='/shop' component={<ShopPage/>} isLoggedIn={isLoggedIn} userTypes={}/> */}
                     <Route path='/shop' element={<ShopPage/>} />
                     <Route path='/onlineShop' element={<OnlineStorePage/>} />
                     <Route path='/parks' element={<ParkPage/>} />
                     <Route path='/chat' element={<ChatPage/>} />
-                    {/* outter route */}
+                    {/* inner route */}
                     <Route path='/onlineShop/cart' element={<CartPage/>}/>
-                    {/* ManagerPage for putting products in website */}
-                    {/* <Route path='/managerPage' element={<ManagerPage/>}/> */}
                     <Route path='/onlineShop/cart/paymentPage' element={<PaymentPage/>}/>
                 </Routes>
 

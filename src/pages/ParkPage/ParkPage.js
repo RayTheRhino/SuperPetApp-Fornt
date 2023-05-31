@@ -7,7 +7,6 @@ import './ParkPage.css'
 
 const ParkPage = () =>{
     const [center, setCenter] = useState([32.0852999, 34.7817676]);
-
     const handleCenterChange = (latitude, longitude) => {
         setCenter([latitude, longitude]);
     };
