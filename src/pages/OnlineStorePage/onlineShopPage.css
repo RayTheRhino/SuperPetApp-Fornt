@@ -10,8 +10,8 @@
 
 .product {
   border-radius: 15px;
-  width: 300px;
-  height: 350px;
+  width: 150px;
+  height: 150px;
   margin: 100px;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,9 @@
 }
 
 .product img {
-  width: 400px;
+  width: 250px;
+  height: 250px;
+  
 }
 
 .product .description {
@@ -58,5 +60,12 @@
 #tinyc {
   margin-left: 70%;
   color: rgba(113, 117, 234, 0.997);
+  margin-top: 20px;
+}
+
+.noCart{
+  font-family: 'Fuzzy Bubbles', sans-serif;
+  font-size: 25px;
+  color: rgb(255, 62, 62);
   margin-top: 20px;
 }

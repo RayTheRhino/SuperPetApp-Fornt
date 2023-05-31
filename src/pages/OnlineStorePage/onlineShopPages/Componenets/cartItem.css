@@ -5,26 +5,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 .cartItem {
-  width: 700px;
-  height: 250px;
+  width: 450px;
+  height: 200px;
   display: flex;
-
   align-items: center;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   margin: 30px;
+  
 }
 
 .cartItem img {
-  width: 200px;
+  width: 150px;
+  margin-left: 50px;
 }
 
 .cartItem .description {
   width: 100%;
-  font-size: 30px;
+  font-size: 20px;
+  font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 .countHandler input {
@@ -51,7 +54,7 @@
 }
 
 #cartTitle {
-  font-family: "Fuzzy bubbles", sans-serif;
+  font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 50px;
   margin-top: 20px;
 }
@@ -71,4 +74,9 @@
 }
 #minus:hover{
   font-size: 25px;
+}
+.pricec{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(192, 151, 230);
 }

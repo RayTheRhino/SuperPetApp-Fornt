@@ -43,21 +43,21 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
 
 
 
-const CommentSection = ({center}) => {
+const CommentSection =  ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
     const alias = "bla";
     const type = 'shop-review';
 
-    const handleAddComment = (e) => {
+    const handleAddComment = async (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
 
         e.preventDefault();
-        fetch('http://localhost:3306/superapp/objects', {
+         await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ const CommentSection = ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": "danielle@gmail.com"
+                        "email": "test_super@email.com"
                     }
                 },
                 objectDetails: {
@@ -90,30 +90,29 @@ const CommentSection = ({center}) => {
 
     };
 
-    const getShopReviews = () => {
+    const getShopReviews = async () => {
         const request = {
             command: "GetAllShopReviews",
             targetObject: {
                 objectId: {
-                    superapp: "2023b.demo",
+                    superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
             },
             invocationTimestamp: "2023-05-05T16:10:04.018+00:00",
             invokedBy: {
                 userId: {
-                    superapp: "2023b.demo",
-                    email: "jane@demo.org",
+                    superapp: "SuperPetApp",
+                    email: "hdudtototo@gmail.com",
                 },
             },
             commandAttributes: {
-                key1: {
-                    key1Subkey: "once a wish upon a star",
-                },
+                size:10,
+                page:0,
             },
         };
 
-        fetch("http://localhost:3306/superapp/miniapp/name", {
+         await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

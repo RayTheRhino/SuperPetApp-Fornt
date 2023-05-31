@@ -13,7 +13,7 @@ const OnlineStorePage = () => {
         <ul>
           <li>
             <Link to="/onlineShop/cart">
-              <ShoppingCart size="70" id="tinyc" />
+              <ShoppingCart size="60" id="tinyc" />
             </Link>
           </li>
         </ul>
