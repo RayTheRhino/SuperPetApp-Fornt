@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { FaStar } from "react-icons/fa";
+import UserContext from "../../../context/UserContext";
 import "./Star.css";
 import './Comment.css'
 
 const RateUs = ({ onRatingChange, selectedRating }) => {
     const [hover, setHover] = useState(null);
-
+    
     const handleRatingChange = (ratingValue) => {
         onRatingChange(ratingValue);
     };
@@ -42,7 +43,8 @@ const Comment = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
-    // const [parkName,setParkName] = useState("");
+    const { loggedInUser } = useContext(UserContext);
+
     const alias ="asa"
     const type = 'park-review';
 
@@ -69,16 +71,17 @@ const Comment = ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": "test_super@email.com"
+                        "email": loggedInUser.email
                     }
                 },
                 objectDetails: {
                     stars: selectedRating,
+                    username:loggedInUser.username,
                     comment: newComment
                 }
             })
         }).then(response => {
-            //     check if brough something else this is not woek
+           console.log(response);
 
         }).catch(error => {
             console.log(error);
@@ -119,7 +122,8 @@ const Comment = ({center}) => {
                 const commentsArray = data.map((item) => {
                     return {
                         rating: item.objectDetails.stars,
-                        comment: item.objectDetails.comment,
+                        username: item.objectDetails.username,
+                        comment: item.objectDetails.comment, 
                     };
                 });
                 setComments(commentsArray);
@@ -151,10 +155,6 @@ const Comment = ({center}) => {
             <div className='comment-box'>
                 <h3 id='add-comment'>Add A Review: </h3>
                 <div>
-                    {/*<div className='park-name'>*/}
-                    {/*    <h3 className='park-name-title'>Park Name:</h3>*/}
-                    {/*    <input className='name-input'/>*/}
-                    {/*</div>*/}
                     <RateUs onRatingChange={handleRatingChange} selectedRating={selectedRating} />
                     <textarea
                         id="comment"
@@ -170,7 +170,9 @@ const Comment = ({center}) => {
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>
                                 <div>Rating: {renderStars(comment.rating)}</div>
+                                <div>Username: {comment.username}</div>
                                 <div>Comment: {comment.comment}</div>
+
                             </li>
                         ))}
                     </ul>

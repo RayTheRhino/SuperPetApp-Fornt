@@ -15,16 +15,18 @@ const ChatPage = () => {
       id: messages.length + 1,
       text: input.value,
       timestamp: Date.now(),
+      username: loggedInUser.username,
     };
-    console.log(newMessage);
+
     setLatestMessage((prevLatestMessage) => {
       return { ...newMessage };
     });
-    console.log(latestMessage);
+   
     setMessages([...messages, newMessage]);
     input.value = ""; //for clean buffer
     console.log("Message: " + latestMessage.text);
   };
+
   useEffect(() => {
     getMessages();
     if (Object.keys(latestMessage).length !== 0) {
@@ -57,7 +59,7 @@ const ChatPage = () => {
             createdBy: {
               userId: {
                 superapp: "SuperPetApp",
-                email: "test_super@email.com",
+                email: loggedInUser.email,
               },
             },
             objectDetails: latestMessage,
@@ -109,6 +111,8 @@ const ChatPage = () => {
           const formattedTimestamp = formatDate(timestamp);
           return {
             id: item.objectDetails.id,
+            email: item.createdBy.userId.email,
+            username:item.objectDetails.username,
             message: item.objectDetails.text,
             timestamp: formattedTimestamp,
           };
@@ -139,7 +143,9 @@ const ChatPage = () => {
       <ul id="chat-ul" className="chat-mess">
         {messages.map((message) => (
           <li id="chat-li" key={message.id}>
-            <strong>{message.timestamp}: </strong>
+            <strong>{message.timestamp}:
+            {message.username} </strong>
+            <br/>
             {message.message}
           </li>
         ))}
