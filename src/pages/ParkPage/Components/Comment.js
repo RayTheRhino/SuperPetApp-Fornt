@@ -1,12 +1,11 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState} from "react";
 import { FaStar } from "react-icons/fa";
-import UserContext from "../../../context/UserContext";
 import "./Star.css";
 import './Comment.css'
 
 const RateUs = ({ onRatingChange, selectedRating }) => {
     const [hover, setHover] = useState(null);
-    
+
     const handleRatingChange = (ratingValue) => {
         onRatingChange(ratingValue);
     };
@@ -43,19 +42,18 @@ const Comment = ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
-    const { loggedInUser } = useContext(UserContext);
-
+    // const [parkName,setParkName] = useState("");
     const alias ="asa"
     const type = 'park-review';
 
-    const handleAddComment =  async (e) => {
+    const handleAddComment = (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
 
         e.preventDefault();
-        await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
+        fetch('http://localhost:3306/superapp/objects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -71,29 +69,27 @@ const Comment = ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": loggedInUser.email
+                        "email": "danielle@gmail.com"
                     }
                 },
                 objectDetails: {
                     stars: selectedRating,
-                    username:loggedInUser.username,
                     comment: newComment
                 }
             })
         }).then(response => {
-           console.log(response);
+            //     check if brough something else this is not woek
 
         }).catch(error => {
             console.log(error);
         });
     };
 
-    const getParkReviews =  async () => {
+    const getParkReviews = () => {
         const request = {
             command: "GetAllParkReviews",
             targetObject: {
                 objectId: {
-                    superapp: "SuperPetApp",
                     superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
@@ -102,16 +98,17 @@ const Comment = ({center}) => {
             invokedBy: {
                 userId: {
                     superapp: "SuperPetApp",
-                    email: "hdudtototo@gmail.com",
+                    email: "jane@demo.org",
                 },
             },
             commandAttributes: {
-                size:10,
-                page:0,
+                key1: {
+                    key1Subkey: "once a wish upon a star",
+                },
             },
         };
 
-        await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
+        fetch("http://localhost:3306/superapp/miniapp/name", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -123,8 +120,7 @@ const Comment = ({center}) => {
                 const commentsArray = data.map((item) => {
                     return {
                         rating: item.objectDetails.stars,
-                        username: item.objectDetails.username,
-                        comment: item.objectDetails.comment, 
+                        comment: item.objectDetails.comment,
                     };
                 });
                 setComments(commentsArray);
@@ -156,6 +152,10 @@ const Comment = ({center}) => {
             <div className='comment-box'>
                 <h3 id='add-comment'>Add A Review: </h3>
                 <div>
+                    {/*<div className='park-name'>*/}
+                    {/*    <h3 className='park-name-title'>Park Name:</h3>*/}
+                    {/*    <input className='name-input'/>*/}
+                    {/*</div>*/}
                     <RateUs onRatingChange={handleRatingChange} selectedRating={selectedRating} />
                     <textarea
                         id="comment"
@@ -171,9 +171,7 @@ const Comment = ({center}) => {
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>
                                 <div>Rating: {renderStars(comment.rating)}</div>
-                                <div>Username: {comment.username}</div>
                                 <div>Comment: {comment.comment}</div>
-
                             </li>
                         ))}
                     </ul>

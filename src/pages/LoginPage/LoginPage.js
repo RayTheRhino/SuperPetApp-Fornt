@@ -1,29 +1,20 @@
-import { useState, useContext,useEffect } from "react";
+import { useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
-import UserContext from "../../context/UserContext";
 import "./LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [role, setRole] = useState("");
   const superapp = "SuperPetApp";
-  const navigate = useNavigate();
-  const { handleLogin } = useContext(UserContext);
-
-  useEffect(() => {
-    if (role !== "") {
-      handleLogin({ username, email, role });
-      navigate("/onlineShop");
-    }
-  }, [role, handleLogin, username, email]);
-
+  // const [isLoggedIn, setLoggedIn] = useState(false);
+  // const [userType, setUserType] = useState(null);
 
   const sendLoginRequest = async () => {
     try {
-      
-      await fetch(
+      console.log(email);
+      console.log(username);
+
+      const response = await fetch(
         `http://localhost:3306/superapp/users/login/${superapp}/${email}`,
         {
           method: "GET",
@@ -32,28 +23,24 @@ const LoginPage = () => {
           },
         }
       )
-      .then((response) => {
-        if (response.status!== 200){
-          console.log("Failed to login")
-          throw new Error("Login failed!")
-        }
-        return response.json()
-      }).then((data) => {
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log("problem login"); //show response on user
+          } else {
             setEmail(email);
             setUsername(username);
-            setRole(data.role);
-            
-            
+            console.log("succes!");
+          }
         })
         .catch((error) => {
           console.log(error);
         });
-        
 
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   return (
@@ -90,7 +77,6 @@ const LoginPage = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required
               />
             </p>
             <p>
@@ -110,4 +96,3 @@ const LoginPage = () => {
   );
 };
 export default LoginPage;
-
