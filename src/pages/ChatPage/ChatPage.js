@@ -1,74 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./ChatPage.css";
+import UserContext from "../../context/UserContext";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [latestMessage, setLatestMessage] = useState({});
   const alias = "baba";
+  const { loggedInUser } = useContext(UserContext);
 
   const handleNewMessage = async (event) => {
-
     event.preventDefault();
     const input = event.target.elements.message;
     const newMessage = {
       id: messages.length + 1,
       text: input.value,
       timestamp: Date.now(),
+      username: loggedInUser.username,
     };
-    console.log(newMessage);
-    setLatestMessage((prevLatestMessage) => { return { ...newMessage };});
-    console.log(latestMessage);
+
+    setLatestMessage((prevLatestMessage) => {
+      return { ...newMessage };
+    });
+   
     setMessages([...messages, newMessage]);
-    input.value = "";
+    input.value = ""; //for clean buffer
     console.log("Message: " + latestMessage.text);
   };
+
   useEffect(() => {
-    // getMessages();
-    // console.log(messages);
-    if (Object.keys(latestMessage).length !== 0) { 
-         handleMessageSent();
+    getMessages();
+    if (Object.keys(latestMessage).length !== 0) {
+      handleMessageSent();
     }
-   
   }, [latestMessage]);
-// useEffect(()=>{
-//     getMessages();
-// },[])
-  
+  useEffect(() => {
+    getMessages();
+    console.log(loggedInUser);
+  }, []);
+
   const handleMessageSent = async () => {
     const type = "message";
-    if (Object.keys(latestMessage).length !== 0) { 
-    await fetch(
-      "http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: type,
-          alias: alias,
-          active: true,
-          location: {
-            lat: 0.0,
-            lng: 0.0,
+    if (Object.keys(latestMessage).length !== 0) {
+      await fetch(
+        "http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-          createdBy: {
-            userId: {
-              superapp: "SuperPetApp",
-              email: "test_super@email.com",
+          body: JSON.stringify({
+            type: type,
+            alias: alias,
+            active: true,
+            location: {
+              lat: 0.0,
+              lng: 0.0,
             },
-          },
-          objectDetails: latestMessage,
-        }),
-      }
-      
-    )
-      .then((response) => {
-        //     check if brough something else this is not woek
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+            createdBy: {
+              userId: {
+                superapp: "SuperPetApp",
+                email: loggedInUser.email,
+              },
+            },
+            objectDetails: latestMessage,
+          }),
+        }
+      )
+        .then((response) => {
+          //     check if brough something else this is not woek
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -93,7 +96,6 @@ const ChatPage = () => {
         page: 0,
       },
     };
-    
 
     await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
       method: "POST",
@@ -105,10 +107,14 @@ const ChatPage = () => {
       .then((response) => response.json())
       .then((data) => {
         const messagesArray = data.map((item) => {
+          const timestamp = new Date(item.objectDetails.timestamp);
+          const formattedTimestamp = formatDate(timestamp);
           return {
             id: item.objectDetails.id,
-            message: item.objectDetails.message,
-            timestamp: Date(item.objectDetails.timestamp),
+            email: item.createdBy.userId.email,
+            username:item.objectDetails.username,
+            message: item.objectDetails.text,
+            timestamp: formattedTimestamp,
           };
         });
         setMessages(messagesArray);
@@ -118,6 +124,13 @@ const ChatPage = () => {
       });
   };
 
+  function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -130,8 +143,10 @@ const ChatPage = () => {
       <ul id="chat-ul" className="chat-mess">
         {messages.map((message) => (
           <li id="chat-li" key={message.id}>
-            <strong>{message.timestamp}: </strong>
-            {message.text}
+            <strong>{message.timestamp}:
+            {message.username} </strong>
+            <br/>
+            {message.message}
           </li>
         ))}
       </ul>
