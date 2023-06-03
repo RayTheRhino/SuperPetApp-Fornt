@@ -1,6 +1,5 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState} from "react";
 import { FaStar } from "react-icons/fa";
-import UserContext from "../../../context/UserContext";
 import "./Star.css";
 import './Comment.css'
 
@@ -45,16 +44,12 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
 
 
 const CommentSection =  ({center}) => {
-const CommentSection =  ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
-    const { loggedInUser } = useContext(UserContext);
-
     const alias = "bla";
     const type = 'shop-review';
 
-    const handleAddComment = async (e) => {
     const handleAddComment = async (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
@@ -62,7 +57,6 @@ const CommentSection =  ({center}) => {
         setSelectedRating(0);
 
         e.preventDefault();
-         await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
          await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
             method: 'POST',
             headers: {
@@ -79,17 +73,16 @@ const CommentSection =  ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": loggedInUser.email
+                        "email": "test_super@email.com"
                     }
                 },
                 objectDetails: {
                     stars: selectedRating,
-                    username:loggedInUser.username,
                     comment: newComment
                 }
             })
         }).then(response => {
-             console.log(response);
+            //     check if brough something else this is not woek
 
         }).catch(error => {
             console.log(error);
@@ -98,12 +91,10 @@ const CommentSection =  ({center}) => {
     };
 
     const getShopReviews = async () => {
-    const getShopReviews = async () => {
         const request = {
             command: "GetAllShopReviews",
             targetObject: {
                 objectId: {
-                    superapp: "SuperPetApp",
                     superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
@@ -113,19 +104,14 @@ const CommentSection =  ({center}) => {
                 userId: {
                     superapp: "SuperPetApp",
                     email: "hdudtototo@gmail.com",
-                    superapp: "SuperPetApp",
-                    email: "hdudtototo@gmail.com",
                 },
             },
             commandAttributes: {
                 size:10,
                 page:0,
-                size:10,
-                page:0,
             },
         };
 
-         await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
          await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
             method: "POST",
             headers: {
@@ -138,7 +124,6 @@ const CommentSection =  ({center}) => {
                 const commentsArray = data.map((item) => {
                     return {
                         rating: item.objectDetails.stars,
-                         username: item.objectDetails.username,
                         comment: item.objectDetails.comment,
                     };
                 });
@@ -187,7 +172,6 @@ const CommentSection =  ({center}) => {
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>
                                 <div>Rating: {renderStars(comment.rating)}</div>
-                                 <div>Username: {comment.username}</div>
                                 <div>Comment: {comment.comment}</div>
                             </li>
                         ))}

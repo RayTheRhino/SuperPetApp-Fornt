@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import { useNavigate } from 'react-router';
 import './SignUpPage.css'
 
 
@@ -9,7 +8,6 @@ const SignUpPage = () => {
     const[avatar, setAvatar] = useState('');
     const [username, setUsername] = useState('');
     const [role, setRole] = useState('');
-    const navigate = useNavigate();
 
 
     const handleSubmit = (event) => {
@@ -26,11 +24,7 @@ const SignUpPage = () => {
                 avatar: avatar
             })
         }).then(response =>{
-        if(response.status !==200){
-            console.log("problem sign up!");
-        }else{
-             navigate('/onlineShop');
-        }
+        //     check if brough something else this is not woek
 
         }).catch(error =>{
             console.log(error);
