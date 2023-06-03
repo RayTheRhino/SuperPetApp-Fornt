@@ -88,7 +88,7 @@ const ChatPage = () => {
       invokedBy: {
         userId: {
           superapp: "SuperPetApp",
-          email: "hdudtototo@gmail.com",
+          email: loggedInUser.email,
         },
       },
       commandAttributes: {
