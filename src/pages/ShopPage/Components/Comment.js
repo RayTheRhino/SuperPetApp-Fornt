@@ -45,6 +45,7 @@ const RateUs = ({ onRatingChange, selectedRating }) => {
 
 
 const CommentSection =  ({center}) => {
+const CommentSection =  ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
@@ -54,12 +55,14 @@ const CommentSection =  ({center}) => {
     const type = 'shop-review';
 
     const handleAddComment = async (e) => {
+    const handleAddComment = async (e) => {
         const commentObj = { rating: selectedRating, comment: newComment };
         setComments([...comments, commentObj]);
         setNewComment("");
         setSelectedRating(0);
 
         e.preventDefault();
+         await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
          await fetch('http://localhost:3306/superapp/objects?userSuper=SuperPetApp&&userEmail=test_super@email.com', {
             method: 'POST',
             headers: {
@@ -95,10 +98,12 @@ const CommentSection =  ({center}) => {
     };
 
     const getShopReviews = async () => {
+    const getShopReviews = async () => {
         const request = {
             command: "GetAllShopReviews",
             targetObject: {
                 objectId: {
+                    superapp: "SuperPetApp",
                     superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
@@ -108,14 +113,19 @@ const CommentSection =  ({center}) => {
                 userId: {
                     superapp: "SuperPetApp",
                     email: "hdudtototo@gmail.com",
+                    superapp: "SuperPetApp",
+                    email: "hdudtototo@gmail.com",
                 },
             },
             commandAttributes: {
                 size:10,
                 page:0,
+                size:10,
+                page:0,
             },
         };
 
+         await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
          await fetch("http://localhost:3306/superapp/miniapp/miniAppName", {
             method: "POST",
             headers: {

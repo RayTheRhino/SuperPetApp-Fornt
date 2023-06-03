@@ -94,6 +94,7 @@ const Comment = ({center}) => {
             targetObject: {
                 objectId: {
                     superapp: "SuperPetApp",
+                    superapp: "SuperPetApp",
                     internalObjectId: "1",
                 },
             },
