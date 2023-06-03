@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { FaStar } from "react-icons/fa";
+import UserContext from "../../../context/UserContext";
 import "./Star.css";
 import './Comment.css'
 
@@ -47,6 +48,8 @@ const CommentSection =  ({center}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [selectedRating, setSelectedRating] = useState(0);
+    const { loggedInUser } = useContext(UserContext);
+
     const alias = "bla";
     const type = 'shop-review';
 
@@ -73,16 +76,17 @@ const CommentSection =  ({center}) => {
                 createdBy: {
                     "userId": {
                         "superapp": "SuperPetApp",
-                        "email": "test_super@email.com"
+                        "email": loggedInUser.email
                     }
                 },
                 objectDetails: {
                     stars: selectedRating,
+                    username:loggedInUser.username,
                     comment: newComment
                 }
             })
         }).then(response => {
-            //     check if brough something else this is not woek
+             console.log(response);
 
         }).catch(error => {
             console.log(error);
@@ -103,7 +107,7 @@ const CommentSection =  ({center}) => {
             invokedBy: {
                 userId: {
                     superapp: "SuperPetApp",
-                    email: "hdudtototo@gmail.com",
+                    email: loggedInUser.email,
                 },
             },
             commandAttributes: {
@@ -124,6 +128,7 @@ const CommentSection =  ({center}) => {
                 const commentsArray = data.map((item) => {
                     return {
                         rating: item.objectDetails.stars,
+                         username: item.objectDetails.username,
                         comment: item.objectDetails.comment,
                     };
                 });
@@ -172,6 +177,7 @@ const CommentSection =  ({center}) => {
                         {comments.map((comment, index) => (
                             <li id='review-li' key={index}>
                                 <div>Rating: {renderStars(comment.rating)}</div>
+                                 <div>Username: {comment.username}</div>
                                 <div>Comment: {comment.comment}</div>
                             </li>
                         ))}
